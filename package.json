@@ -1,0 +1,14 @@
+{
+  "name": "mackerel-twilio-handson",
+  "version": "0.1.0",
+  "description": "Mackerel-Twilio HandsOn Seminar",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "author": "tukaelu",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  }
+}
