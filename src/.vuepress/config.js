@@ -6,7 +6,7 @@ module.exports = {
   themeConfig: {
     sidebar: [
       {
-        title: '目次',
+        title: 'Mackerelハンズオン',
         collapsable: false,
         children: [
           '/',
@@ -17,9 +17,15 @@ module.exports = {
           '/05_metric_plugins/',
           '/06_check_plugins/',
           '/07_notification/',
-          '/08_twilio/',
+          '/09_extra/',
         ]
       },
-    ],
+      {
+        title: 'Twilioとの連携',
+        collapsable: false,
+        children: [
+          '/08_twilio/',
+        ]
+      },    ],
   }
 }

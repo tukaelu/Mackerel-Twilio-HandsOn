@@ -48,6 +48,7 @@ sudo sh << SCRIPT
 cat >>/etc/mackerel-agent/mackerel-agent.conf <<'EOF';
 [plugin.metrics.linux]
 command = "mackerel-plugin-linux"
+
 EOF
 SCRIPT
 ```

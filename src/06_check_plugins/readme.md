@@ -62,6 +62,7 @@ sudo sh << SCRIPT
 cat >>/etc/mackerel-agent/mackerel-agent.conf <<'EOF';
 [plugin.checks.proc_httpd]
 command = ["check-procs", "--pattern", "httpd"]
+
 EOF
 SCRIPT
 ```
@@ -92,9 +93,11 @@ Procs OK:
 Found 6 matching processes; cmd /httpd/
 ```
 
-また設定を反映したホストの詳細画面にある Monitors にチェック監視とその結果が反映されているか確認してみましょう。
+また設定を反映したホストの詳細画面の上部／下部にある Monitors にチェック監視とその結果が反映されているか確認してみましょう。
 
-TODO: スクショ貼る
+![](./host_monitors.png)
+
+Monitors に`proc_httpd`が追加されていることが確認できます。（スクリーンショットは画面下部）
 
 ## 監視対象プロセスを停止してみる
 
@@ -124,32 +127,3 @@ sudo systemctl start httpd
 ```
 
 httpdプロセスを起動して数分するとアラートが自動的にクローズされることを確認します。
-
-## 障害を自動復旧させる
-
-チェック監視では監視を行った結果に応じて任意のコマンドを実行する`action`オプションが用意されています。
-
-ハンズオンではhttpdプロセスの監視を実践したので、httpdプロセスのダウンを検知したらhttpdプロセスの自動復旧を行うように`action`を定義してみましょう。
-
-先ほどの設定に`action = ...`の行を追加してください。
-
-```toml
-action = { command = "bash -c '[ \"$MACKEREL_STATUS\" != \"OK\" ]' && systemctl start httpd" }
-```
-
-以下のように設定ができれば完了です。
-
-```toml
-[plugin.checks.proc_httpd]
-command = ["check-procs", "--pattern", "httpd"]
-action = { command = "bash -c '[ \"$MACKEREL_STATUS\" != \"OK\" ]' && systemctl start httpd" }
-```
-
-`action`オプションを指定すると監視が行われる度に`action`に指定された`command`が実行されます。
-その際、監視の実行結果が環境変数`$MACKEREL_STATUS`に代入されるので、`OK`以外だった場合にhttpdを起動するコマンドを実行して自動復旧させるといった仕組みになります。
-
-それでは、httpdプロセスを停止してアラートの発報から自動復旧がされるか確認してみましょう。
-
-```shell
-sudo systemctl stop httpd
-```
