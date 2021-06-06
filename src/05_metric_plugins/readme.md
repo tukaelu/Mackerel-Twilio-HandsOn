@@ -23,7 +23,7 @@ ls -l /usr/bin/mackerel-plugin-*
 
 50を超えるプラグインがインストールされていることを確認していただけるかと思います！
 
-Mackerelの公式プラグイン集は以下のGitHubリポジトリで公開されていて、OSS（オープンソースソフトウェア）なので、いつでも誰でも実装を確認できますし、修正や機能追加なども可能です。
+Mackerelの公式プラグイン集は以下のGitHubリポジトリで公開されています。OSS（オープンソースソフトウェア）なのでいつでも誰でも実装を確認できますし、修正や機能追加なども可能です。
 
 - [https://github.com/mackerelio/mackerel-agent-plugins](https://github.com/mackerelio/mackerel-agent-plugins)
 
@@ -46,14 +46,14 @@ command = "mackerel-plugin-linux"
 ```shell
 sudo sh << SCRIPT
 cat >>/etc/mackerel-agent/mackerel-agent.conf <<'EOF';
+
 [plugin.metrics.linux]
 command = "mackerel-plugin-linux"
-
 EOF
 SCRIPT
 ```
 
-特にエラーなどが発生せず、再びコマンドが入力できる状態になっていれば成功です。（完了メッセージも表示されません）
+特にエラーなどが発生せず、再びコマンドが入力できる状態になっていれば成功です。（完了メッセージなどは表示されません）
 
 mackerel-agent.conf を変更した際に有効なシンタックスチェック機能が mackerel-agent には備わっています。次のコマンドを実行してみましょう。
 
@@ -61,7 +61,7 @@ mackerel-agent.conf を変更した際に有効なシンタックスチェック
 mackerel-agent configtest
 ```
 
-次のような結果が出力されれば記載ミスなどがないことを確認できます。
+次のような結果が出力されていれば記載ミスなどがないことを確認できます。
 
 ```
 /etc/mackerel-agent/mackerel-agent.conf Syntax OK
@@ -96,7 +96,7 @@ linux.ss.LISTEN	42.000000	1620797938
  :
 ```
 
-`mackerel-plugin-*` のようなメトリックの監視を拡張するプラグインは規定のフォーマットで標準出力する仕様のため、以下の仕様に沿って実装されサーバー上で実行が可能であれば開発言語は問わず実装することが出来ます。
+メトリックプラグインは規定のフォーマットで監視結果を標準出力をする仕様となっています。仕様に沿って実装され、サーバー上で実行が可能であれば開発言語は問わずオリジナルのプラグインを実装できます。
 
 - [ホストのカスタムメトリックを投稿する - Mackerel ヘルプ](https://mackerel.io/ja/docs/entry/advanced/custom-metrics#post-metric)
 

@@ -60,9 +60,9 @@ command = ["check-procs", "--pattern", "httpd"]
 ```shell
 sudo sh << SCRIPT
 cat >>/etc/mackerel-agent/mackerel-agent.conf <<'EOF';
+
 [plugin.checks.proc_httpd]
 command = ["check-procs", "--pattern", "httpd"]
-
 EOF
 SCRIPT
 ```
@@ -93,7 +93,17 @@ Procs OK:
 Found 6 matching processes; cmd /httpd/
 ```
 
-また設定を反映したホストの詳細画面の上部／下部にある Monitors にチェック監視とその結果が反映されているか確認してみましょう。
+チェックプラグインはコマンドを実行した終了ステータスで監視結果を表現します。check-procsコマンドを実行した直後に次のように終了ステータスを確認すると`0`となっていることがわかります。
+
+```shell
+echo $?
+```
+
+以下の仕様に沿ってプラグインを実装することで、チェック監視項目を強化できます。
+
+- [チェックプラグイン仕様（チェック監視項目を追加する） - Mackerel ヘルプ](https://mackerel.io/ja/docs/entry/custom-checks#plugin)
+
+それでは設定を反映したホストの詳細画面の上部／下部にある Monitors にチェック監視とその結果が反映されているか確認してみましょう。
 
 ![](./host_monitors.png)
 
