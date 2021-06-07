@@ -18,6 +18,7 @@ module.exports = {
           '/06_check_plugins/',
           '/07_notification/',
           '/09_extra/',
+          '/16_retire_host/',
         ]
       },
       {
