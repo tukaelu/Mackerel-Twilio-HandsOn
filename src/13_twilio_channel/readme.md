@@ -5,7 +5,19 @@ lang: ja-jp
 
 # Twilioと連携して架電通知をする
 
-Twilioハンズオンで作成したアカウントを利用して、アラート通知をメール通知ではなく電話による架電通知する設定を行ってみましょう。
+さきほど作成したアカウントを利用して、アラート通知をメール通知ではなく電話による架電通知する設定を行ってみましょう。
+
+## Twilio APIを利用するための資格情報を確認する
+
+TwilioのAPIを利用する場合は`ACCOUNT SID`、`AUTH TOKEN`と呼ばれる資格情報が必要になります。
+
+[Twilioコンソール](https://jp.twilio.com/console/)を開き、`アカウント SID`、`Auth Token`をそれぞれ控えておきます。
+
+![コンソール](./twilio_console.png)
+
+### __Auth Token__ について
+
+`Auth Token`はパスワードに値する非常に __重要な情報__ なので、`アカウント SID`と共に外部に流出しないように取り扱いについては十分注意してください。
 
 ## Twilioの通知チャンネルを作成する
 
@@ -18,10 +30,10 @@ Twilioのハンズオンで作成したアカウントで払い出された`ACCO
 | 項目 | 設定値 |
 | --- | ---- |
 | 通知チャンネル名 | `架電通知`（任意） |
-| AccountSid | [Twilioのコンソール](https://www.twilio.com/console)から`ACCOUNT SID`を転記 |
-| AuthToken | [Twilioのコンソール](https://www.twilio.com/console)から`AUTH TOKEN`を転記 |
-| From | [Twilioのコンソール](https://www.twilio.com/console/phone-numbers/incoming)から確保した電話番号を転記 |
-| To | 着信可能な電話番号を入力（電話番号の前に`+81`を付加してください） |
+| AccountSid | [Twilioのコンソール](https://jp.twilio.com/console)から`ACCOUNT SID`を転記 |
+| AuthToken | [Twilioのコンソール](https://jp.twilio.com/console)から`AUTH TOKEN`を転記 |
+| From | [Twilioのコンソール](https://jp.twilio.com/console/phone-numbers/incoming)から確保した電話番号を[E.164形式](https://www.twilio.com/docs/glossary/what-e164)で転記 |
+| To | 着信可能な電話番号を[E.164形式](https://www.twilio.com/docs/glossary/what-e164)で入力（Twilioアカウントがトライアル版の場合は[検証済み電話番号](https://jp.twilio.com/console/phone-numbers/verified)に登録されている番号を指定） |
 | Notification Type |  |
 | Message | `アラートを確認してください`（発話させる内容を入力） |
 | Language | `ja-JP` |
@@ -56,6 +68,13 @@ sudo systemctl stop httpd
 
 ![](./alert.png)
 
-Twilioとの連携はいかがでしたでしょうか？とても簡単に連携ができることを体験いただけたかと思います！
+## 音声ではなく、SMSでアラートを受け取るには
 
-ぜひ、本番環境などを監視される際はTwilioとの連携も併せてお試しください！
+音声通話ではなくSMSでアラートを受け取る場合は
+次のように設定項目を変更します。
+
+| 項目 | 設定値 |
+| --- | ---- |
+| Notification Type | SMS |
+
+この場合は固定のメッセージが送信されます。
