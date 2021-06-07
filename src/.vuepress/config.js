@@ -24,7 +24,12 @@ module.exports = {
         title: 'Twilioとの連携',
         collapsable: false,
         children: [
-          '/08_twilio/',
+          '/10_twilio_overview/',
+          '/11_twilio_signup/',
+          '/12_twilio_phone_number/',
+          '/13_twilio_channel/',
+          '/14_twilio_twiml/',
+          '/15_twilio_remove_phone_number/'
         ]
       },    ],
   }
