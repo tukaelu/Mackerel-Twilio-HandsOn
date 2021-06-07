@@ -9,11 +9,11 @@ lang: ja-jp
 
 ## エージェントをインストール
 
-Webコンソールの[新規ホストの登録](https://mackerel.io/my/instruction-agent)にアクセスして、監視対象OSのインストールスクリプトをコピーします。
+Webコンソールの左サイドメニューの下部にある[新規ホストの登録](https://mackerel.io/my/instruction-agent)にアクセスして、監視対象OSのインストールスクリプトをコピーします。
 
 ![](./image01.png)
 
-Amazon Linux2の場合は以下のような内容をコピーします。（貸与しているハンズオン環境はAmazon Linux2となります）
+Amazon Linux2の場合は以下のような内容をコピーします。（貸与しているハンズオンサーバーは`Amazon Linux2`となります）
 - コマンドの右端にあるクリップボードアイコンからコピーできます。
 - `<YOUR API KEY>`は環境によって異なります。
 
@@ -40,7 +40,7 @@ curl -fsSL https://mackerel.io/file/script/amznlinux/setup-all-yum-v2.sh | MACKE
 
 ![](./hosts.png)
 
-また mackerel-agent がデフォルトで収集する情報がどのようなものかも確認してみてください。
+ホスト名をクリックしてホスト詳細画面にアクセスし、 mackerel-agent が収集する情報にどのようなものがあるかメトリック仕様と照らし合わせて確認してみてください。
 
 - [メトリック仕様 - Mackerel ヘルプ](https://mackerel.io/ja/docs/entry/spec/metrics)
 
@@ -65,6 +65,8 @@ sudo yum clean all
 
 インストールしたホストからインターネットへの通信が行えていないなどが考えられます。
 
-以下のFAQなどを参考にしてください。
+mackerel-agentのログを確認して、どのようなエラーが発生しているかなど確認をしてください。
 
-- [エージェントが起動しない – Mackerel Support](https://support.mackerel.io/hc/ja/articles/360040108631-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%8C%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%AA%E3%81%84)
+```shell
+sudo journalctl -u mackerel-agent.service
+```
