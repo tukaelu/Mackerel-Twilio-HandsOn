@@ -65,6 +65,8 @@ sudo yum clean all
 
 インストールしたホストからインターネットへの通信が行えていないなどが考えられます。
 
-以下のFAQなどを参考にしてください。
+mackerel-agentのログを確認して、どのようなエラーが発生しているかなど確認をしてください。
 
-- [エージェントが起動しない – Mackerel Support](https://support.mackerel.io/hc/ja/articles/360040108631-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%8C%E8%B5%B7%E5%8B%95%E3%81%97%E3%81%AA%E3%81%84)
+```shell
+sudo journalctl -u mackerel-agent.service
+```
