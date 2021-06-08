@@ -55,6 +55,10 @@ sudo systemctl stop httpd
 
 現時点では`Email Broadcast`の通知チャンネルしかないため通知グループによる通知の振り分けを感じられませんが、Twilioのハンズオンで作成したアカウントと連携した架電通知を後ほど試してみましょう！
 
-<br>
+Mackerelのハンズオンはここまでとなりますので、httpdプロセスを起動して障害を解消させます。
 
-Mackerelのハンズオンはここまでとなります。お疲れさまでした！
+```shell
+sudo systemctl start httpd
+```
+
+お疲れさまでした！

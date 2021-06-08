@@ -46,6 +46,13 @@ sudo systemctl start httpd
 
 ```shell
 ps aux | grep httpd
+root      3918  0.6  0.9 255220  9296 ?        Ss   03:52   0:00 /usr/sbin/httpd -DFOREGROUND
+apache    3919  0.0  0.6 306576  6308 ?        Sl   03:52   0:00 /usr/sbin/httpd -DFOREGROUND
+apache    3920  0.0  0.6 306576  6308 ?        Sl   03:52   0:00 /usr/sbin/httpd -DFOREGROUND
+apache    3921  0.0  0.6 306576  6308 ?        Sl   03:52   0:00 /usr/sbin/httpd -DFOREGROUND
+apache    3922  0.0  0.6 536016  6308 ?        Sl   03:52   0:00 /usr/sbin/httpd -DFOREGROUND
+apache    3923  0.0  0.6 306576  6308 ?        Sl   03:52   0:00 /usr/sbin/httpd -DFOREGROUND
+ec2-user  3967  0.0  0.0 119436   936 pts/0    S+   03:52   0:00 grep --color=auto httpd
 ```
 
 mackerel-agentの設定ファイル `/etc/mackerel-agent/mackerel-agent.conf` をviなどで開いて以下の2行を追記します。
@@ -103,7 +110,7 @@ echo $?
 
 - [チェックプラグイン仕様（チェック監視項目を追加する） - Mackerel ヘルプ](https://mackerel.io/ja/docs/entry/custom-checks#plugin)
 
-それでは設定を反映したホストの詳細画面の上部／下部にある Monitors にチェック監視とその結果が反映されているか確認してみましょう。
+それでは設定を反映したホストの詳細画面の上部／下部にある Monitors にチェック監視とその結果が反映されているか確認してみましょう。[Hosts](https://mackerel.io/my/hosts)からアクセスします。
 
 ![](./host_monitors.png)
 
@@ -130,7 +137,11 @@ Procs CRITICAL:
 Found 0 matching processes; cmd /httpd/
 ```
 
-発報されたアラートを[Alerts](https://mackerel.io/my/alerts)で確認して、障害を復旧させてみましょう。
+発報されたアラートを[Alerts](https://mackerel.io/my/alerts)から確認してみます。
+
+![](./alert.png)
+
+アラートが確認できたら障害から復旧させてみましょう。
 
 ```shell
 sudo systemctl start httpd

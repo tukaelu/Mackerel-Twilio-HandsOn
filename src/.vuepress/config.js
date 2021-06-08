@@ -17,7 +17,7 @@ module.exports = {
           '/05_metric_plugins/',
           '/06_check_plugins/',
           '/07_notification/',
-          '/09_extra/',
+          // '/09_extra/',
           '/16_retire_host/',
         ]
       },

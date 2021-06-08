@@ -73,7 +73,11 @@ mackerel-agent configtest
 sudo systemctl restart mackerel-agent
 ```
 
-コマンド実行後、`[ OK ]`と表示されていれば起動成功です。
+ps コマンドなどで mackerel-agent が起動していることを確認しましょう。
+
+```shell
+ps aux | grep mackerel-agent
+```
 
 ### プラグインを手動で実行してみる
 
