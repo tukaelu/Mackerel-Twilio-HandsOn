@@ -52,6 +52,20 @@ TwiMLエンドポイントは自社で提供するWebアプリケーションの
 
 このTwiMLはMackerel側から渡される`alertId`の値を通知先に伝えています。このidは[アラート API](https://mackerel.io/ja/api-docs/entry/alerts)で利用できるため、TwiMLエンドポイントを独自のWebエンドポイント、またはTwilio FunctionsやAWS LambdaなどのFaaSで構築し、さらに複雑な情報を通知できます。
 
+この画面に表示されているURLを控えておきます。
+
+## 架電通知チャンネルを編集
+
+Mackerelダッシュボードの[Channel](https://mackerel.io/my/channels)を開き、`架電通知`チャンネルの`編集`ボタンをクリックします。
+
+通知設定が表示されるのでそれぞれ次の項目を変更します。
+
+| 項目 | 設定値 |
+| --- | ---- |
+| Notification Type | `架電通知 (TwiML エンドポイントを指定して通知)` |
+| URL | 先ほど取得した TwiML BinのURL |
+
+
 ## 障害を起こして通知の確認をする
 
 それでは障害を起こして通知を確認してみましょう。
@@ -63,6 +77,12 @@ sudo systemctl stop httpd
 ```
 
 指定した電話番号宛に架電され、指定したTwiMLによる通知が行われたでしょうか？
+
+アラートが確認できたら障害から復旧させましょう。
+
+```shell
+sudo systemctl start httpd
+```
 
 Twilioとの連携はいかがでしたでしょうか？とても簡単に連携ができることを体験いただけたかと思います！
 

@@ -34,7 +34,7 @@ Twilioのハンズオンで作成したアカウントで払い出された`ACCO
 | AuthToken | [Twilioのコンソール](https://jp.twilio.com/console)から`AUTH TOKEN`を転記 |
 | From | [Twilioのコンソール](https://jp.twilio.com/console/phone-numbers/incoming)から確保した電話番号を[E.164形式](https://www.twilio.com/docs/glossary/what-e164)で転記 |
 | To | 着信可能な電話番号を[E.164形式](https://www.twilio.com/docs/glossary/what-e164)で入力（Twilioアカウントがトライアル版の場合は[検証済み電話番号](https://jp.twilio.com/console/phone-numbers/verified)に登録されている番号を指定） |
-| Notification Type |  |
+| Notification Type | 架電通知（固定メッセージで通知） |
 | Message | `アラートを確認してください`（発話させる内容を入力） |
 | Language | `ja-JP` |
 | Notification Level | `Warning & Critical` |
@@ -62,11 +62,27 @@ Twilioのハンズオンで作成したアカウントで払い出された`ACCO
 sudo systemctl stop httpd
 ```
 
+----
+
+__トライアルアカウント__ の場合は最初にトライアル版を利用中であるというメッセージが再生されます。全文は下記の通りです。このメッセージはスキップできません。そのため最後までこのメッセージを聞いてください。
+
+> *You have a trial account. You can remove this message at anytime by upgrading to full account. Press any to execute your code.*
+
+メッセージの再生後に何かキーを押すと指定したメッセージを再生できます。日本語のメッセージが再生されることを確認しましょう。
+
+----
+
 指定した電話番号宛に架電され、指定したメッセージによる通知が行われたでしょうか？
 
 [Alerts](https://mackerel.io/my/alerts)を確認すると、通知先が作成したTwilioのチャンネルにのみ通知されていることが確認できるかと思います。
 
 ![](./alert.png)
+
+アラートが確認できたら障害から復旧させましょう。
+
+```shell
+sudo systemctl start httpd
+```
 
 ## 音声ではなく、SMSでアラートを受け取るには
 
